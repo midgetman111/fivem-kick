@@ -1,3 +1,6 @@
+local QBCore = exports['qb-core']:GetCoreObject()
+
+
 QBCore.Commands.Add('kicknew', 'kick', {
     {name = "Id", help = "Player Id"}
 }, false, function(source, args)
