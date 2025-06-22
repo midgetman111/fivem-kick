@@ -1,7 +1,6 @@
 RegisterNetEvent("kick:ilv-scripts:KickKidnapScene", function()
     local playerPed = PlayerPedId()
     local coords    = GetEntityCoords(playerPed)
-
     local guardModel = joaat("s_m_y_dealer_01")
     RequestModel(guardModel)
     while not HasModelLoaded(guardModel) do Wait(0) end
@@ -10,6 +9,7 @@ RegisterNetEvent("kick:ilv-scripts:KickKidnapScene", function()
                                0.0, true, true)
     SetBlockingOfNonTemporaryEvents(guardPed, true)
     SetPedCanRagdoll(guardPed, false)
+
 
     local vanModel = joaat("burrito")
     local van      = GetClosestVehicle(coords, 15.0, vanModel, 70)
@@ -43,15 +43,21 @@ RegisterNetEvent("kick:ilv-scripts:KickKidnapScene", function()
 
     NetworkStartSynchronisedScene(scene)
 
-    Wait(GetAnimDuration(animDict, "drag_into_van_burr") * 1000)
+Wait(8000)
+DoScreenFadeOut(1000)
+while not IsScreenFadedOut() do Wait(0) end
 
-    ClearPedTasksImmediately(playerPed)
+Wait(3500)
 
-    SetEntityAsMissionEntity(guardPed, true, true)
-    DeleteEntity(guardPed)
+ClearPedTasksImmediately(playerPed)
 
-    if spawnedVan then
-        SetEntityAsMissionEntity(van, true, true)
-        DeleteEntity(van)
-    end
+SetEntityAsMissionEntity(guardPed, true, true)
+DeleteEntity(guardPed)
+
+if spawnedVan then
+    SetEntityAsMissionEntity(van, true, true)
+    DeleteEntity(van)
+end
 end)
+
+
