@@ -19,9 +19,6 @@ server_script {
 
 }
 
-
-
-
-
-
-
+dependencies {
+    'oxmysql'
+}
